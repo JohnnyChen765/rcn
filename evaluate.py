@@ -222,7 +222,7 @@ class PlaneNetDetector():
         self.options = options
         self.config = config
         sys.path.append('../../existing_methods/')
-        from PlaneNet.planenet_inference import PlaneNetDetector
+        from PlaneNet.PlaneNet.planenet_inference import PlaneNetDetector
         self.detector = PlaneNetDetector(predictNYU=False)
         return
 
@@ -493,6 +493,7 @@ def evaluate(options):
         else:
             camera = [filename.replace('.png', '.txt').replace('.jpg', '.txt') for filename in image_list]
             pass
+        
         dataset = InferenceDataset(options, config, image_list=image_list, camera=camera)
         pass
 
