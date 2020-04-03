@@ -1,5 +1,5 @@
 # when a make command is not a real file, it should be specified as PHONY to say it's not a real file ?
-.PHONY: activate clean_results compare evaluate crop_evaluate
+.PHONY: activate clean_results compare evaluate crop_evaluate evalcompare
 
 # the default command "make" without specifying a command name
 default: activate
@@ -30,14 +30,18 @@ clean_results:
 # 	# rm -r dummy
 
 evaluate:
-	python3 evaluate.py --methods=${method} --suffix=warping_refine --dataset=inference/results_${folder} --customDataFolder=${folder}
+	python3 evaluate.py --methods=f --suffix=warping_refine --dataset=inference/results_${folder} --customDataFolder=custom_data/${folder}
 	@make clean_results folder=test/inference/results_${folder}
 
 compare:
-	@mkdir -p ${new_folder}/comparaison
-	@cp ${original_folder}/*final.png ${new_folder}/comparaison
-	@for filename in ${new_folder}/*final.png; do mv $$filename $${filename%%.*}_${suffix}.png; done;
-	@mv ${new_folder}/*final_${suffix}.png ${new_folder}/comparaison
+	@mkdir -p test/inference/${folder}/comparaison
+	@cp test/inference/${original_folder}/*final.png test/inference/${folder}/comparaison
+	@for filename in test/inference/${folder}/*final.png; do mv $$filename $${filename%%.*}_${suffix}.png; done;
+	@mv test/inference/${folder}/*final_${suffix}.png test/inference/${folder}/comparaison
+
+evalcompare:
+	@make evaluate method=f folder=${folder} 
+	@make compare folder=results_${folder} original_folder=${original_folder}
 
 add_suffix:
 	@for filename in ${folder}/*; do mv $$filename $${filename%%.*}_${suffix}.$${filename##*.}; done;
