@@ -128,6 +128,7 @@ class PlaneRCNNDetector():
                 depth_np = detection_dict['depth_np']
                 image = new_input_dict['image']
                 image_2 = new_input_dict['image_2']
+
                 depth_gt = new_input_dict['depth'].unsqueeze(1)
 
                 masks_inp = torch.cat([detection_masks.unsqueeze(1), detection_dict['plane_XYZ']], dim=1)

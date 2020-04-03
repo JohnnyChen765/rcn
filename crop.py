@@ -76,4 +76,3 @@ if __name__ == "__main__":
         os.makedirs(out_folder)
     for file in tqdm(files):
         image_crop(in_folder + "/" + file, out_folder, n_crop)
-
