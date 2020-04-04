@@ -1,0 +1,5 @@
+*.zip
+results_bw_*
+results_*
+!results_bw
+camera*
