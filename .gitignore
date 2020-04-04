@@ -1,6 +1,6 @@
-custom_data/
+# custom_data/
 PlaneNet/
-test/
+# test/
 nms*
 roi*
 scans/

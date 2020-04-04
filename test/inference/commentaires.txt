@@ -1,0 +1,29 @@
+Nous avons testé plusieurs types d'entrées pour voir comment le modèle se comporte:
+
+- A partir d'une banque d'image en blanc et noir, nous avons zoomé les images par interpolation bilinéaire comme vous l'aviez proposé : zoom 0.5, 2 et 4
+
+Les résultats se trouvent dans le dossier "results_bw_zoom_<0.5, 2 ou 4>/comparaison", où on compare avec le cas neutre. Nous avons ajouté un suffix au nom pour que la comparaison de chaque image soit AVANT/APRES
+
+=> Au vu des résultats, il semble que le zoom ne modifie pas beaucoup le résultat que l'on obtient. L'algorithme redimensionne l'image pour pouvoir traiter n'importe quelle taille dimage, et de ce fait annule en partie l'effet du zoom. L'algorithme fait une interpolation linéaire sur chaque dimension pour ramener l'image en 640x480 avant de l'utiliser (rapport à la taille d'entrée du réseau, sûrement)
+
+
+- A partir d'une banque d'image en blanc et noir, nous avons zoomé les images puis nous les avons "crop", c'est-à-dire que nous n'avons sélectionné qu'une partie de l'image.
+
+Les résultats se trouvent dans le dossier "results_bw_zoom_cropped/comparaison", où on compare avec le cas neutre. Nous avons ajouté un suffix au nom pour que la comparaison de chaque image soit AVANT/APRES
+
+=> Nous voyons qu'en se concentrant sur une petite partie de l'image, certains éléments qui étaient non détectés au début le sont ensuite. Cela va dans le sens de notre intuition qui était que le réseau ne considère pas les entités qui sont très petites au sein d'une image.
+
+
+- A partir d'une banque d'image en blanc et noir, nous avons fait le cas inverse : nous avons crop puis zoomé.
+
+Les résultats se trouvent dans le dossier "results_bw_cropped_zoom/comparaison". Nous avons ajouté un suffix au nom des images pour que la comparaison de chaque image soit AVANT/APRES
+
+=> Nous avons à peu près les mêmes résultats que précédemment. De plus, il semble que l'ordre des opérations ait peu d'influences.
+
+
+
+- A partir des 3 images d'exemples que le papier fournissait, où les résultats étaient très bons,  nous avons grisés les images afin de voir si le réseau était toujours aussi performant.
+
+Les résultats se trouvent dans le dossier "results_exemple_images_grey".
+
+=> Nous voyons que les résultats sont moins bons, il y a quelques plans qui ont disparus, mais globalement les résultats restent tout de même très bon. Bien entendu, les images d'exemples sont faits pour avoir de bon résultats sur ce modèle. On peut faire l'hypothèse que la perte de performance serait peut être plus importante sur des images moins orthodoxes.
