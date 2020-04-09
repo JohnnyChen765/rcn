@@ -41,7 +41,7 @@ compare:
 
 evalcompare:
 	@make evaluate method=f folder=${folder} 
-	@make compare folder=results_${folder} original_folder=${original_folder}
+	@make compare folder=results_${folder} original_folder=${original_folder} suffix=${suffix}
 
 add_suffix:
 	@for filename in ${folder}/*; do mv $$filename $${filename%%.*}_${suffix}.$${filename##*.}; done;
