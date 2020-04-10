@@ -6,6 +6,7 @@ from tqdm import tqdm
 
 
 def image_crop(in_path, out_folder, n_crop=4):
+    
     image = np.array(Image.open(in_path))
     x, y, z = image.shape if (len(image.shape) == 3) else (image.shape + (0,))
 
